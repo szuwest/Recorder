@@ -29,7 +29,7 @@
 
 最保守的方法就是直接采用TCP协议建立sock来通信。在iOS端和Android端都有很好的socket库，不用担心能不能实现和兼容性问题。这个方案挺好但是缺点也明显，因为sock通信只定义了最基础的，消息格式要完全自己定制和实现，还多心跳之类的，这里的工作量还不少。也许还有少的框架实现了这些，但是要同时在iOS端和安卓端都有实现，我还真不知道有哪些。而且我的情景里最重要的是有一个主机在里面，所有的从机都跟主机通信，所以必须说要有一个server。
 
-我后来采用的的WebSocket来实现。WebSocket在Android上有很多库，不过大多数都是client端的,包括了server端的有AndroidAsync,Java-Websocket。我采用的是AndroidAysnc。而iOS端可选择的就更少了。我在github上找了很多库，都是只支持client的，有支持server的都是很久很老的项目，找到一个采用swift写的叫Telegraph库，试用了起来，这个库实现得不是很好，有挺多问题，不尽如意。最终现在iOS端只有采用了Facebook的SocketRocket来作为client端，server端暂时没有好的实现。
+我后来采用的的WebSocket来实现。WebSocket在Android上有很多库，不过大多数都是client端的,包括了server端的有AndroidAsync,Java-Websocket。我采用的是AndroidAysnc。而iOS端可选择的就更少了。我在github上找了很多库，都是只支持client的，有支持server的都是很久很老的项目，找到一个采用swift写的叫Telegraph库，试用了起来，这个库实现得不是很好，有挺多问题，不尽如意。最终现在iOS端只有采用了Facebook的SocketRocket来作为client端，server端暂时没有好的实现。**后来我找到了一个还算比较可靠的包含server的iOS的WebSocket库：PocketSocket。感兴趣的可以看一下**
 
 采用WebSocket来实现双向通信有不少好处，例如它直接支持发送字符串消息，二进制数据（文件），还有连接上和断开都有相应的事件，还有ping-pong这种心跳机制，我觉得挺好的。iOS端的WebSocket server暂时没有找到可靠的第三方实现，比较遗憾。
 
@@ -37,3 +37,7 @@
 
 * [Android局域网发现和建立一对多通信](https://github.com/szuwest/Recorder)
 * [iOS局域网发现和建立一对多通信](https://github.com/szuwest/SpeakinRecorder)
+
+
+如果对你有用或许你可以打赏请我喝杯咖啡☕️
+![打赏](https://raw.githubusercontent.com/szuwest/szuwest.github.io/master/images/2018-02-21%20133111.jpg)
